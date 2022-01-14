@@ -1,24 +1,65 @@
 <!DOCTYPE html>
+<meta charset="UTF-8">
+
 <html>
     <head>
         <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
-    <body>
+        <script>
+            
+            
+            // Add text to an invisible div and get the width of that div to find the length of the text in px
+            // Most of this function came from https://stackoverflow.com/questions/118241/calculate-text-width-with-javascript
+            function getTextWidth(text, font) {
+                var f = font,
+                    o = $('<div></div>')
+                        .attr('id', 'width')
+                        .text(text)
+                        .css({'display': 'inline-block', 'padding': '0px', 'visibility': 'hidden', 'font': f, 'font-weight': 'bold'})
+                        .appendTo($('body')),
+                    w = document.getElementById("width").clientWidth
+                o.remove();
+                //console.log(text, Math.ceil(w + 5))
+                return w + 5
+            }
+
+            // Set all the borderHeadings width based on the width of their text
+            function setBorderHeadingWidths() {
+                var elements = document.getElementsByClassName("borderHeading");
+                var prevWidth = 0;
+                for (let i = 0; i < elements.length; i++)
+                {
+                    var theDoc = elements[i]
+                    var text = theDoc.textContent
+                    var size = window.getComputedStyle(theDoc).fontSize
+                    var font = size + " Times New Roman"
+                    var width = getTextWidth(text, font)
+                    theDoc.style.width = width + "px"
+                    if (text.includes("Link"))
+                    {
+                        theDoc.style.marginLeft = (prevWidth + 20) + "px"
+                        theDoc.style.marginTop = "-42px"
+                    }
+                    prevWidth = width
+                }
+            }
+        </script>
+        <h1 class=centre>AAAAAAAA</h1>
+    </head>
+    <body onload='setBorderHeadingWidths()'>
         <div class=centre>
-            <h1 class=text>
-            AAAAAAAA
-            </h1>
-            <div class=border style="margin-bottom:30px;">
+            <div class=border>
                 <h2 class=borderHeading style="width:110px; margin-top:-18px;">About Me</h2>
                 <p>I write the code and stuff ay.</p>
                 <p>Graduated from UTAS in 2021 with a Bachelor of ICT, majoring in Software Development.</p>
             </div>
             
-            <div class=border>
-                <h2 class=borderHeading style="width:90px; margin-top:-18px;">Projects</h2>
+            <div class=border style="margin-bottom: 60px; padding-bottom: 0px;">
+                <h2 id="1" class=borderHeading style="margin-top:-18px;">Personal Projects</h2>
                 <div class=border>
-                    <h3 class=borderHeading style="width:130px; margin-top:-14px;">Advent of Code</h3>
-                    <h3 class=borderHeading style="width:50px; margin-top:-42px; margin-left:150px;">
+                    <h3 id="2" class=borderHeading>Advent of Code</h3>
+                    <h3 class=borderHeading>
                         <a href="https://github.com/JustinHJJohnson/Advent-of-Code">Link</a>
                     </h3>
                     <p>
@@ -30,16 +71,11 @@
                     <p>
                         Eget sit amet tellus cras adipiscing enim eu turpis. Ultricies mi quis hendrerit dolor. Ornare quam viverra orci sagittis eu. Accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu. Interdum velit euismod in pellentesque massa placerat duis ultricies. Scelerisque mauris pellentesque pulvinar pellentesque. Pharetra vel turpis nunc eget. Sagittis vitae et leo duis ut diam quam nulla. Odio euismod lacinia at quis risus sed vulputate odio ut. Ut consequat semper viverra nam libero justo laoreet sit amet. Arcu bibendum at varius vel pharetra vel turpis nunc. Odio pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus. Quam id leo in vitae turpis massa sed. Sit amet facilisis magna etiam tempor orci eu lobortis elementum. Sociis natoque penatibus et magnis dis parturient montes.
                     </p>
-                    <p>
-                        Neque vitae tempus quam pellentesque nec nam aliquam. Nunc aliquet bibendum enim facilisis gravida neque convallis. Massa tempor nec feugiat nisl pretium fusce id velit ut. Aliquam malesuada bibendum arcu vitae elementum. Donec et odio pellentesque diam. Vestibulum morbi blandit cursus risus at ultrices mi. Donec et odio pellentesque diam volutpat commodo. Neque vitae tempus quam pellentesque nec. Quis imperdiet massa tincidunt nunc. Scelerisque eleifend donec pretium vulputate sapien nec sagittis. A pellentesque sit amet porttitor. Semper eget duis at tellus at urna condimentum mattis. Sit amet consectetur adipiscing elit duis tristique sollicitudin nibh. Nam aliquam sem et tortor consequat. Risus viverra adipiscing at in. Quis blandit turpis cursus in. Posuere morbi leo urna molestie at. Pellentesque habitant morbi tristique senectus et. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Fringilla est ullamcorper eget nulla facilisi.
-                    </p>
-                    <p>
-                        Platea dictumst quisque sagittis purus sit amet volutpat consequat mauris. Pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Facilisi etiam dignissim diam quis enim lobortis. Arcu vitae elementum curabitur vitae nunc sed velit dignissim. Dui accumsan sit amet nulla facilisi morbi. Auctor elit sed vulputate mi sit amet mauris. Malesuada fames ac turpis egestas sed tempus urna et pharetra. Risus pretium quam vulputate dignissim suspendisse in est ante in. Posuere urna nec tincidunt praesent semper feugiat nibh. Neque ornare aenean euismod elementum nisi quis eleifend. Neque volutpat ac tincidunt vitae semper quis lectus nulla at. Hac habitasse platea dictumst quisque. Quis lectus nulla at volutpat. Pellentesque sit amet porttitor eget dolor morbi non. Velit aliquet sagittis id consectetur purus ut faucibus pulvinar.
-                    </p>
+                    
                 </div>
                 <div class=border>
-                    <h3 class=borderHeading style="width:134px; margin-top:-14px;">RetroArch Sync</h3>
-                    <h3 class=borderHeading style="width:50px; margin-top:-42px; margin-left:154px;">
+                    <h3 id="3" class=borderHeading>RetroArch Sync</h3>
+                    <h3 class=borderHeading>
                         <a href="https://github.com/JustinHJJohnson/RetroArch-Sync">Link</a>
                     </h3>
                     <p>
@@ -51,16 +87,10 @@
                     <p>
                         Eget sit amet tellus cras adipiscing enim eu turpis. Ultricies mi quis hendrerit dolor. Ornare quam viverra orci sagittis eu. Accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu. Interdum velit euismod in pellentesque massa placerat duis ultricies. Scelerisque mauris pellentesque pulvinar pellentesque. Pharetra vel turpis nunc eget. Sagittis vitae et leo duis ut diam quam nulla. Odio euismod lacinia at quis risus sed vulputate odio ut. Ut consequat semper viverra nam libero justo laoreet sit amet. Arcu bibendum at varius vel pharetra vel turpis nunc. Odio pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus. Quam id leo in vitae turpis massa sed. Sit amet facilisis magna etiam tempor orci eu lobortis elementum. Sociis natoque penatibus et magnis dis parturient montes.
                     </p>
-                    <p>
-                        Neque vitae tempus quam pellentesque nec nam aliquam. Nunc aliquet bibendum enim facilisis gravida neque convallis. Massa tempor nec feugiat nisl pretium fusce id velit ut. Aliquam malesuada bibendum arcu vitae elementum. Donec et odio pellentesque diam. Vestibulum morbi blandit cursus risus at ultrices mi. Donec et odio pellentesque diam volutpat commodo. Neque vitae tempus quam pellentesque nec. Quis imperdiet massa tincidunt nunc. Scelerisque eleifend donec pretium vulputate sapien nec sagittis. A pellentesque sit amet porttitor. Semper eget duis at tellus at urna condimentum mattis. Sit amet consectetur adipiscing elit duis tristique sollicitudin nibh. Nam aliquam sem et tortor consequat. Risus viverra adipiscing at in. Quis blandit turpis cursus in. Posuere morbi leo urna molestie at. Pellentesque habitant morbi tristique senectus et. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Fringilla est ullamcorper eget nulla facilisi.
-                    </p>
-                    <p>
-                        Platea dictumst quisque sagittis purus sit amet volutpat consequat mauris. Pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Facilisi etiam dignissim diam quis enim lobortis. Arcu vitae elementum curabitur vitae nunc sed velit dignissim. Dui accumsan sit amet nulla facilisi morbi. Auctor elit sed vulputate mi sit amet mauris. Malesuada fames ac turpis egestas sed tempus urna et pharetra. Risus pretium quam vulputate dignissim suspendisse in est ante in. Posuere urna nec tincidunt praesent semper feugiat nibh. Neque ornare aenean euismod elementum nisi quis eleifend. Neque volutpat ac tincidunt vitae semper quis lectus nulla at. Hac habitasse platea dictumst quisque. Quis lectus nulla at volutpat. Pellentesque sit amet porttitor eget dolor morbi non. Velit aliquet sagittis id consectetur purus ut faucibus pulvinar.
-                    </p>
                 </div>
                 <div class=border>
-                    <h3 class=borderHeading style="width:233px; margin-top:-14px;">qBittorent Remote Manager</h3>
-                    <h3 class=borderHeading style="width:50px; margin-top:-42px; margin-left:253px;">
+                    <h3 id="4" class=borderHeading>qBittorent Remote Manager</h3>
+                    <h3 class=borderHeading>
                         <a href="https://github.com/JustinHJJohnson/qBittorent-Remote-Manager">Link</a>
                     </h3>
                     <p>
@@ -72,11 +102,53 @@
                     <p>
                         Eget sit amet tellus cras adipiscing enim eu turpis. Ultricies mi quis hendrerit dolor. Ornare quam viverra orci sagittis eu. Accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu. Interdum velit euismod in pellentesque massa placerat duis ultricies. Scelerisque mauris pellentesque pulvinar pellentesque. Pharetra vel turpis nunc eget. Sagittis vitae et leo duis ut diam quam nulla. Odio euismod lacinia at quis risus sed vulputate odio ut. Ut consequat semper viverra nam libero justo laoreet sit amet. Arcu bibendum at varius vel pharetra vel turpis nunc. Odio pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus. Quam id leo in vitae turpis massa sed. Sit amet facilisis magna etiam tempor orci eu lobortis elementum. Sociis natoque penatibus et magnis dis parturient montes.
                     </p>
+                </div>
+            </div>
+            <div class=border style="margin-bottom: 60px; padding-bottom: 0px;">
+                <h2 id="5" class=borderHeading style="margin-top:-18px;">Uni Projects</h2>
+                <div class=border>
+                    <h3 id="6" class=borderHeading>Three Apps, Three Languages</h3>
+                    <h3 class=borderHeading>
+                        <a href="https://github.com/JustinHJJohnson/KIT305-Mobile-Applications-and-Development">Link</a>
+                    </h3>
                     <p>
-                        Neque vitae tempus quam pellentesque nec nam aliquam. Nunc aliquet bibendum enim facilisis gravida neque convallis. Massa tempor nec feugiat nisl pretium fusce id velit ut. Aliquam malesuada bibendum arcu vitae elementum. Donec et odio pellentesque diam. Vestibulum morbi blandit cursus risus at ultrices mi. Donec et odio pellentesque diam volutpat commodo. Neque vitae tempus quam pellentesque nec. Quis imperdiet massa tincidunt nunc. Scelerisque eleifend donec pretium vulputate sapien nec sagittis. A pellentesque sit amet porttitor. Semper eget duis at tellus at urna condimentum mattis. Sit amet consectetur adipiscing elit duis tristique sollicitudin nibh. Nam aliquam sem et tortor consequat. Risus viverra adipiscing at in. Quis blandit turpis cursus in. Posuere morbi leo urna molestie at. Pellentesque habitant morbi tristique senectus et. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Fringilla est ullamcorper eget nulla facilisi.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing elit pellentesque habitant morbi tristique senectus. Amet mattis vulputate enim nulla aliquet porttitor lacus luctus. Proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. Odio tempor orci dapibus ultrices in iaculis nunc sed augue. Laoreet non curabitur gravida arcu ac. A erat nam at lectus urna duis convallis. Eu non diam phasellus vestibulum lorem. At varius vel pharetra vel turpis nunc eget lorem. Ante metus dictum at tempor commodo ullamcorper a. Diam quam nulla porttitor massa id neque. Egestas purus viverra accumsan in nisl nisi scelerisque eu. Dignissim enim sit amet venenatis urna. Platea dictumst quisque sagittis purus sit amet volutpat consequat mauris. Suscipit adipiscing bibendum est ultricies integer quis auctor.
                     </p>
                     <p>
-                        Platea dictumst quisque sagittis purus sit amet volutpat consequat mauris. Pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Facilisi etiam dignissim diam quis enim lobortis. Arcu vitae elementum curabitur vitae nunc sed velit dignissim. Dui accumsan sit amet nulla facilisi morbi. Auctor elit sed vulputate mi sit amet mauris. Malesuada fames ac turpis egestas sed tempus urna et pharetra. Risus pretium quam vulputate dignissim suspendisse in est ante in. Posuere urna nec tincidunt praesent semper feugiat nibh. Neque ornare aenean euismod elementum nisi quis eleifend. Neque volutpat ac tincidunt vitae semper quis lectus nulla at. Hac habitasse platea dictumst quisque. Quis lectus nulla at volutpat. Pellentesque sit amet porttitor eget dolor morbi non. Velit aliquet sagittis id consectetur purus ut faucibus pulvinar.
+                        Ipsum dolor sit amet consectetur adipiscing. Maecenas volutpat blandit aliquam etiam erat. Posuere urna nec tincidunt praesent semper feugiat. Molestie nunc non blandit massa enim nec. Volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque eleifend. Nisl purus in mollis nunc. Fringilla urna porttitor rhoncus dolor purus non enim praesent. Lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare. Faucibus vitae aliquet nec ullamcorper sit. Aliquet sagittis id consectetur purus. Nunc pulvinar sapien et ligula. Pulvinar proin gravida hendrerit lectus. Arcu non odio euismod lacinia at quis risus sed. Convallis convallis tellus id interdum. Odio eu feugiat pretium nibh ipsum consequat nisl vel pretium. Sed viverra ipsum nunc aliquet. Dolor sed viverra ipsum nunc aliquet bibendum enim.
+                    </p>
+                    <p>
+                        Eget sit amet tellus cras adipiscing enim eu turpis. Ultricies mi quis hendrerit dolor. Ornare quam viverra orci sagittis eu. Accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu. Interdum velit euismod in pellentesque massa placerat duis ultricies. Scelerisque mauris pellentesque pulvinar pellentesque. Pharetra vel turpis nunc eget. Sagittis vitae et leo duis ut diam quam nulla. Odio euismod lacinia at quis risus sed vulputate odio ut. Ut consequat semper viverra nam libero justo laoreet sit amet. Arcu bibendum at varius vel pharetra vel turpis nunc. Odio pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus. Quam id leo in vitae turpis massa sed. Sit amet facilisis magna etiam tempor orci eu lobortis elementum. Sociis natoque penatibus et magnis dis parturient montes.
+                    </p>
+                </div>
+                <div class=border>
+                    <h3 id="7" class=borderHeading>Raytracer Optimisation</h3>
+                    <h3 class=borderHeading>
+                        <a href="https://github.com/JustinHJJohnson/RetroArch-Sync">Link</a>
+                    </h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing elit pellentesque habitant morbi tristique senectus. Amet mattis vulputate enim nulla aliquet porttitor lacus luctus. Proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. Odio tempor orci dapibus ultrices in iaculis nunc sed augue. Laoreet non curabitur gravida arcu ac. A erat nam at lectus urna duis convallis. Eu non diam phasellus vestibulum lorem. At varius vel pharetra vel turpis nunc eget lorem. Ante metus dictum at tempor commodo ullamcorper a. Diam quam nulla porttitor massa id neque. Egestas purus viverra accumsan in nisl nisi scelerisque eu. Dignissim enim sit amet venenatis urna. Platea dictumst quisque sagittis purus sit amet volutpat consequat mauris. Suscipit adipiscing bibendum est ultricies integer quis auctor.
+                    </p>
+                    <p>
+                        Ipsum dolor sit amet consectetur adipiscing. Maecenas volutpat blandit aliquam etiam erat. Posuere urna nec tincidunt praesent semper feugiat. Molestie nunc non blandit massa enim nec. Volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque eleifend. Nisl purus in mollis nunc. Fringilla urna porttitor rhoncus dolor purus non enim praesent. Lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare. Faucibus vitae aliquet nec ullamcorper sit. Aliquet sagittis id consectetur purus. Nunc pulvinar sapien et ligula. Pulvinar proin gravida hendrerit lectus. Arcu non odio euismod lacinia at quis risus sed. Convallis convallis tellus id interdum. Odio eu feugiat pretium nibh ipsum consequat nisl vel pretium. Sed viverra ipsum nunc aliquet. Dolor sed viverra ipsum nunc aliquet bibendum enim.
+                    </p>
+                    <p>
+                        Eget sit amet tellus cras adipiscing enim eu turpis. Ultricies mi quis hendrerit dolor. Ornare quam viverra orci sagittis eu. Accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu. Interdum velit euismod in pellentesque massa placerat duis ultricies. Scelerisque mauris pellentesque pulvinar pellentesque. Pharetra vel turpis nunc eget. Sagittis vitae et leo duis ut diam quam nulla. Odio euismod lacinia at quis risus sed vulputate odio ut. Ut consequat semper viverra nam libero justo laoreet sit amet. Arcu bibendum at varius vel pharetra vel turpis nunc. Odio pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus. Quam id leo in vitae turpis massa sed. Sit amet facilisis magna etiam tempor orci eu lobortis elementum. Sociis natoque penatibus et magnis dis parturient montes.
+                    </p>
+                </div>
+                <div class=border>
+                    <h3 id="8" class=borderHeading>2D and 3D Animation</h3>
+                    <h3 class=borderHeading>
+                        <a href="https://github.com/JustinHJJohnson/KIT307-Computer-Graphics-and-Animation">Link</a>
+                    </h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing elit pellentesque habitant morbi tristique senectus. Amet mattis vulputate enim nulla aliquet porttitor lacus luctus. Proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. Odio tempor orci dapibus ultrices in iaculis nunc sed augue. Laoreet non curabitur gravida arcu ac. A erat nam at lectus urna duis convallis. Eu non diam phasellus vestibulum lorem. At varius vel pharetra vel turpis nunc eget lorem. Ante metus dictum at tempor commodo ullamcorper a. Diam quam nulla porttitor massa id neque. Egestas purus viverra accumsan in nisl nisi scelerisque eu. Dignissim enim sit amet venenatis urna. Platea dictumst quisque sagittis purus sit amet volutpat consequat mauris. Suscipit adipiscing bibendum est ultricies integer quis auctor.
+                    </p>
+                    <p>
+                        Ipsum dolor sit amet consectetur adipiscing. Maecenas volutpat blandit aliquam etiam erat. Posuere urna nec tincidunt praesent semper feugiat. Molestie nunc non blandit massa enim nec. Volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque eleifend. Nisl purus in mollis nunc. Fringilla urna porttitor rhoncus dolor purus non enim praesent. Lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare. Faucibus vitae aliquet nec ullamcorper sit. Aliquet sagittis id consectetur purus. Nunc pulvinar sapien et ligula. Pulvinar proin gravida hendrerit lectus. Arcu non odio euismod lacinia at quis risus sed. Convallis convallis tellus id interdum. Odio eu feugiat pretium nibh ipsum consequat nisl vel pretium. Sed viverra ipsum nunc aliquet. Dolor sed viverra ipsum nunc aliquet bibendum enim.
+                    </p>
+                    <p>
+                        Eget sit amet tellus cras adipiscing enim eu turpis. Ultricies mi quis hendrerit dolor. Ornare quam viverra orci sagittis eu. Accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu. Interdum velit euismod in pellentesque massa placerat duis ultricies. Scelerisque mauris pellentesque pulvinar pellentesque. Pharetra vel turpis nunc eget. Sagittis vitae et leo duis ut diam quam nulla. Odio euismod lacinia at quis risus sed vulputate odio ut. Ut consequat semper viverra nam libero justo laoreet sit amet. Arcu bibendum at varius vel pharetra vel turpis nunc. Odio pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus. Quam id leo in vitae turpis massa sed. Sit amet facilisis magna etiam tempor orci eu lobortis elementum. Sociis natoque penatibus et magnis dis parturient montes.
                     </p>
                 </div>
             </div>

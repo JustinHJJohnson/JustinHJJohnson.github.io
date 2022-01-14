@@ -6,20 +6,23 @@
 body{
     background: var(--background-color);
     color: var(--text-color);
+    font-family: 'Times New Roman', Times, serif
 }
 
 .border{
     border: 1px solid var(--text-color);
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 30px;
     display: inline-block;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
 }
 
 .borderHeading{
     margin-left: 5px;
+    margin-top: -14px;
     background: var(--background-color) !important;
     white-space: nowrap !important;
 }
@@ -34,5 +37,12 @@ body{
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.test {
+    background-color: blueviolet;
+    display: inline-block;
+    padding: 0px;
 }
